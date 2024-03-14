@@ -1,0 +1,8 @@
+{
+  "yaml.schemas": {
+    "swaggerviewer:openapi": [
+      "file:///Users/user/Desktop/trabalho/correioAPI/openapi%3A%203.yml",
+      "file:///Users/user/Desktop/trabalho/correioAPI/views/doc%3A%203.yml"
+    ]
+  }
+}

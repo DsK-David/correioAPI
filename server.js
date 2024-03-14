@@ -1,8 +1,10 @@
 const express = require("express");
 const sqlite3 = require("sqlite3").verbose();
+const cors = require("cors");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+app.use(cors());
 
 // Conexão com o banco de dados
 const db = new sqlite3.Database("correrioAPI.db");
@@ -18,11 +20,26 @@ db.serialize(() => {
     status TEXT
   )`);
 });
-
+db.serialize(() => {
+  db.run(`CREATE TABLE IF NOT EXISTS admin (
+    id INTEGER PRIMARY KEY,
+    nome TEXT,
+    senha TEXT
+  )`);
+});
 
 // Middleware para processar requisições JSON
 app.use(express.json());
-
+app.use(express.static("public"));
+app.get("/", (req, res) => {
+  res.sendFile(__dirname + "/views/index.html");
+});
+app.get("/doc", (req, res) => {
+  res.sendFile(__dirname + "/public/docs/docs/index.html");
+});
+app.get("/docs", (req, res) => {
+  res.sendFile(__dirname + "/views/docs.html");
+});
 // Rota para listar todas as encomendas
 app.get("/get/api/v1/encomendas", (req, res) => {
   db.all("SELECT * FROM encomendas", (err, rows) => {
@@ -33,8 +50,26 @@ app.get("/get/api/v1/encomendas", (req, res) => {
     res.json(rows);
   });
 });
-
-// Rota para criar uma nova encomenda
+app.get("/get/api/v1/admin", (req, res) => {
+  db.all("SELECT * FROM admin", (err, rows) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.json(rows);
+  });
+});
+app.post("/auth/api/v1/admin", (req, res) => {
+  const { nome, senha } = req.body;
+  const stmt = db.prepare("INSERT INTO admin (nome,senha) VALUES (?, ?)");
+  stmt.run(nome, senha, (err) => {
+    if (err) {
+      res.status(500).json({ error: err.message });
+      return;
+    }
+    res.status(201).json({ message: "Admin adicionado com sucesso" });
+  });
+});
 // Rota para criar uma nova encomenda
 app.post("/auth/api/v1/encomendas/", (req, res) => {
   const { id, nome_proprietario, contacto, endereco, documentos, status } =
@@ -67,7 +102,7 @@ app.post("/auth/api/v1/encomendas/", (req, res) => {
           res.status(500).json({ error: err.message });
           return;
         }
-        res.status(201).json({ message: "Encomenda criada com sucesso." });
+        res.status(201).json({ message: "Encomenda adicionada com sucesso." });
       }
     );
   });
@@ -82,9 +117,7 @@ app.put("/update/api/v1/encomendas/:id", (req, res) => {
     return;
   }
 
-  const stmt = db.prepare(
-    "UPDATE encomendas SET status = ? WHERE id = ?"
-  );
+  const stmt = db.prepare("UPDATE encomendas SET status = ? WHERE id = ?");
   stmt.run(status, id, (err) => {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -118,18 +151,20 @@ app.get("/search/api/v1/encomendas/vindo", (req, res) => {
 });
 
 app.get("/search/api/v1/encomendas/:nome_proprietario", (req, res) => {
-    const nome_proprietario = req.params.nome_proprietario
+  const nome_proprietario = req.params.nome_proprietario;
 
-  db.all("SELECT * FROM encomendas WHERE nome_proprietario = ?", nome_proprietario, (err, rows) => {
-    if (err) {
-      res.status(500).json({ error: err.message });
-      return;
+  db.all(
+    "SELECT * FROM encomendas WHERE nome_proprietario = ?",
+    nome_proprietario,
+    (err, rows) => {
+      if (err) {
+        res.status(500).json({ error: err.message });
+        return;
+      }
+      res.json(rows);
     }
-    res.json(rows);
-  });
+  );
 });
-
-
 
 // Iniciar o servidor
 app.listen(PORT, () => {

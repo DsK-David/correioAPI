@@ -3,25 +3,38 @@ POST http://localhost:3000/auth/api/v1/encomendas/
 Content-Type: application/json
 
 {
-        "id":"BF01234567810",
-        "nome_proprietario":"teste02",
-        "contacto":"23834567",
-        "endereco":"fazenda",
-        "documentos":"SM20051002",
+        "id":"BF01234567812",
+        "nome_proprietario":"Lucas Ramos",
+        "contacto":"999999",
+        "endereco":"palmarejo grande",
+        "documentos":"SM20061002",
         "status":"vindo"
+
+}
+###
+POST http://localhost:3000/auth/api/v1/admin
+Content-Type: application/json
+
+{
+        "nome":"admin",
+        "senha":"admin"
 
 }
 ###
 GET http://localhost:3000/get/api/v1/encomendas
 ###
+GET https://api.warezcdn.com/isd8fusad129ud1ddha0/series/list/1
+###
+GET http://localhost:3000/get/api/v1/admin
+###
 GET http://localhost:3000/search/api/v1/encomendas/entregues
 ###
 GET http://localhost:3000/search/api/v1/encomendas/vindo
 ###
-GET http://localhost:3000/search/api/v1/encomendas/teste02
+GET http://localhost:3000/search/api/v1/encomendas/Lucas%20Ramos
 
 ###
-PUT http://localhost:3000/update/api/v1/encomendas/BF0123456789
+PUT http://localhost:3000/update/api/v1/encomendas/BF012345678910
 Content-Type: application/json
 
 {

@@ -1,0 +1,171 @@
+openapi: 3.0.0
+info:
+  title: CorreiosAPI
+  description: API para gerenciar encomendas e administradores
+  version: 1.0.0
+servers:
+  - url: http://localhost:3000
+  - url: http://localhost:5500
+paths:
+  /get/api/v1/encomendas:
+    get:
+      summary: Lista todas as encomendas
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Encomenda"
+  /auth/api/v1/encomendas:
+    post:
+      summary: Cria uma nova encomenda
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/EncomendaInput"
+      responses:
+        "201":
+          description: Created
+  /update/api/v1/encomendas/{id}:
+    put:
+      summary: Atualiza o status de uma encomenda
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/StatusInput"
+      responses:
+        "200":
+          description: OK
+  /search/api/v1/encomendas/entregues:
+    get:
+      summary: Lista todas as encomendas entregues
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Encomenda"
+  /search/api/v1/encomendas/vindo:
+    get:
+      summary: Lista todas as encomendas a caminho
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Encomenda"
+  /search/api/v1/encomendas/{nome_proprietario}:
+    get:
+      summary: Lista todas as encomendas de um proprietário específico
+      parameters:
+        - name: nome_proprietario
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Encomenda"
+components:
+  schemas:
+    Encomenda:
+      type: object
+      properties:
+        id:
+          type: string
+        nome_proprietario:
+          type: string
+        contacto:
+          type: integer
+        endereco:
+          type: string
+        documentos:
+          type: string
+        status:
+          type: string
+    EncomendaInput:
+      type: object
+      properties:
+        id:
+          type: string
+        nome_proprietario:
+          type: string
+        contacto:
+          type: integer
+        endereco:
+          type: string
+        documentos:
+          type: string
+        status:
+          type: string
+    StatusInput:
+      type: object
+      properties:
+        status:
+          type: string
+x-templates:
+  default:
+    darkMode: true
+    # css: |
+    #   .swagger-ui {
+    #     background-color: #202225;
+    #     color: #fff;
+    #   }
+    #   .topbar {
+    #     background-color: #161b22 !important;
+    #   }
+    #   .info .title hgroup {
+    #     background-color: #161b22 !important;
+    #   }
+    #   .opblock-description-summary {
+    #     color: #fff !important;
+    #   }
+    #   .opblock-tag-section {
+    #     background-color: #2f3336 !important;
+    #     border: 1px solid #3d4347 !important;
+    #   }
+    #   .opblock-summary {
+    #     background-color: #2f3336 !important;
+    #     border: 1px solid #3d4347 !important;
+    #     color: #fff !important;
+    #   }
+    #   .opblock-section {
+    #     background-color: #2f3336 !important;
+    #     border: 1px solid #3d4347 !important;
+    #   }
+    #   .tab-header .tab-item.active {
+    #     background-color: #3d4347 !important;
+    #     color: #fff !important;
+    #   }
+    #   .execute-wrapper .btn.try-out__btn {
+    #     background-color: #3d4347 !important;
+    #     border-color: #3d4347 !important;
+    #   }
+    #   .opblock .opblock-summary-path {
+    #     background-color: #202225 !important;
+    #   }
