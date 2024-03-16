@@ -32,7 +32,7 @@ db.serialize(() => {
 app.use(express.json());
 app.use(express.static("public"));
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/docs.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 // Rota para listar todas as encomendas
