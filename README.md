@@ -105,6 +105,15 @@ GET /search/api/v1/encomendas/:nome_proprietario
 
 Esta rota retorna todas as encomendas cujo nome do proprietário corresponde ao fornecido na URL.
 
+### Buscar Encomenda por ID
+```
+GET /search/api/v1/encomendas/:id
+```
+
+Esta rota retorna os detalhes de uma encomenda específica com base no ID fornecido na URL.
+
+
+
 ## Observações
 
 - Todas as respostas da API estão em formato JSON.
