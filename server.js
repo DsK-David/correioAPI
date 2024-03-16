@@ -32,14 +32,9 @@ db.serialize(() => {
 app.use(express.json());
 app.use(express.static("public"));
 app.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
-});
-app.get("/doc", (req, res) => {
-  res.sendFile(__dirname + "/public/docs/docs/index.html");
-});
-app.get("/docs", (req, res) => {
   res.sendFile(__dirname + "/views/docs.html");
 });
+
 // Rota para listar todas as encomendas
 app.get("/get/api/v1/encomendas", (req, res) => {
   db.all("SELECT * FROM encomendas", (err, rows) => {
