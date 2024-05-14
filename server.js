@@ -43,6 +43,7 @@ app.get("/correioAPI/get/api/v1/encomendas", (req, res) => {
       return;
     }
     res.json(rows);
+    console.table(rows)
   });
 });
 app.get("/correioAPI/get/api/v1/admin", (req, res) => {
@@ -52,6 +53,7 @@ app.get("/correioAPI/get/api/v1/admin", (req, res) => {
       return;
     }
     res.json(rows);
+    console.table(rows)
   });
 });
 app.post("/correioAPI/auth/api/v1/admin", (req, res) => {
@@ -102,7 +104,24 @@ app.post("/correioAPI/auth/api/v1/encomendas/", (req, res) => {
     );
   });
 });
-
+function updateStatus() {
+  const statusEntregue = "entregue";
+  const statusVindo = "vindo";
+  const oneWeekInMilliseconds = 7 * 24 * 60 * 60 * 1000;
+  setTimeout(() => {
+    const stmt = db.prepare(
+      "UPDATE encomendas SET status = ? WHERE status = ?"
+    );
+    stmt.run(statusEntregue, statusVindo, (err) => {
+      if (err) {
+        console.error(err.message);
+        return;
+      }
+      console.log("Status da encomenda atualizado com sucesso.");
+    });
+  }, oneWeekInMilliseconds);
+}
+updateStatus();
 app.put("/correioAPI/update/api/v1/encomendas/:id", (req, res) => {
   const id = req.params.id;
   const { status } = req.body;
@@ -131,6 +150,7 @@ app.get("/correioAPI/search/api/v1/encomendas/entregues", (req, res) => {
       return;
     }
     res.json(rows);
+    console.table(rows)
   });
 });
 app.get("/correioAPI/search/api/v1/encomendas/vindo", (req, res) => {
@@ -142,10 +162,12 @@ app.get("/correioAPI/search/api/v1/encomendas/vindo", (req, res) => {
       return;
     }
     res.json(rows);
+    console.table(rows);
   });
 });
 
-app.get("/correioAPI/search/api/v1/encomendas/:nome_proprietario",
+app.get(
+  "/correioAPI/search/api/v1/encomendas/:nome_proprietario",
   (req, res) => {
     const nome_proprietario = req.params.nome_proprietario;
 
@@ -158,6 +180,7 @@ app.get("/correioAPI/search/api/v1/encomendas/:nome_proprietario",
           return;
         }
         res.json(rows);
+        console.table(rows);
       }
     );
   }

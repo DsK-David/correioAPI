@@ -1,9 +1,9 @@
 ###
-POST http://localhost:3000/auth/api/v1/encomendas/
+POST http://localhost:3000/correioAPI/auth/api/v1/encomendas/
 Content-Type: application/json
 
 {
-        "id":"BF01234567812",
+        "id":"BF0123456785",
         "nome_proprietario":"Lucas Ramos",
         "contacto":"999999",
         "endereco":"palmarejo grande",
@@ -12,7 +12,7 @@ Content-Type: application/json
 
 }
 ###
-POST http://localhost:3000/auth/api/v1/admin
+POST http://localhost:3000/correioAPI/auth/api/v1/admin
 Content-Type: application/json
 
 {
@@ -21,20 +21,20 @@ Content-Type: application/json
 
 }
 ###
-GET http://localhost:3000/get/api/v1/encomendas
+GET http://localhost:3000/correioAPI/get/api/v1/encomendas/all
 ###
 GET https://api.warezcdn.com/isd8fusad129ud1ddha0/series/list/1
 ###
-GET http://localhost:3000/get/api/v1/admin
+GET http://localhost:3000/correioAPI/get/api/v1/admin
 ###
-GET http://localhost:3000/search/api/v1/encomendas/entregues
+GET http://localhost:3000/correioAPI/search/api/v1/encomendas/entregues
 ###
-GET http://localhost:3000/search/api/v1/encomendas/vindo
+GET http://localhost:3000/correioAPI/search/api/v1/encomendas/vindo
 ###
-GET http://localhost:3000/search/api/v1/encomendas/Lucas%20Ramos
+GET http://localhost:3000/correioAPI/search/api/v1/encomendas/Lucas%20Ramos
 
 ###
-PUT http://localhost:3000/update/api/v1/encomendas/BF012345678910
+PUT http://localhost:3000/correioAPI/update/api/v1/encomendas/BF0123456781
 Content-Type: application/json
 
 {

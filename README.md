@@ -23,7 +23,7 @@ Certifique-se de ter o Node.js instalado em sua máquina.
 1. Clone este repositório:
 
 ```
-git clone https://github.com/seu-usuario/correioAPI.git
+git clone https://github.com/DsK-David/correioAPI.git
 ```
 
 2. Instale as dependências:
