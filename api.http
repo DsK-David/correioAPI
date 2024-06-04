@@ -1,18 +1,18 @@
 ###
-POST http://localhost:3000/correioAPI/auth/api/v1/encomendas/
+POST http://localhost:3000/correioAPI/api/v1/encomendas/
 Content-Type: application/json
 
 {
-        "id":"BF0123456785",
-        "nome_proprietario":"Lucas Ramos",
-        "contacto":"999999",
-        "endereco":"palmarejo grande",
-        "documentos":"SM20061002",
+        "id":"BF0123456786",
+        "nome_proprietario":"Mirian Lima",
+        "contacto":"1234567",
+        "endereco":"Terra Branca",
+        "documentos":"SM2000514",
         "status":"vindo"
 
 }
 ###
-POST http://localhost:3000/correioAPI/auth/api/v1/admin
+POST http://localhost:3000/correioAPI/api/v1/admin
 Content-Type: application/json
 
 {
@@ -21,20 +21,20 @@ Content-Type: application/json
 
 }
 ###
-GET http://localhost:3000/correioAPI/get/api/v1/encomendas/all
+GET http://localhost:3000/correioAPI/api/v1/encomendas
 ###
 GET https://api.warezcdn.com/isd8fusad129ud1ddha0/series/list/1
 ###
-GET http://localhost:3000/correioAPI/get/api/v1/admin
+GET http://localhost:3000/correioAPI/api/v1/admin
 ###
-GET http://localhost:3000/correioAPI/search/api/v1/encomendas/entregues
+GET http://localhost:3000/correioAPI/api/v1/encomendas/entregues
 ###
-GET http://localhost:3000/correioAPI/search/api/v1/encomendas/vindo
+GET http://localhost:3000/correioAPI/api/v1/encomendas/vindo
 ###
-GET http://localhost:3000/correioAPI/search/api/v1/encomendas/Lucas%20Ramos
+GET http://localhost:3000/correioAPI/api/v1/encomendas/Mirian%20Lima
 
 ###
-PUT http://localhost:3000/correioAPI/update/api/v1/encomendas/BF0123456781
+PUT http://localhost:3000/correioAPI/api/v1/encomendas/BF0123456786
 Content-Type: application/json
 
 {

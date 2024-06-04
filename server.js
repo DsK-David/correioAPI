@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 });
 
 // Rota para listar todas as encomendas
-app.get("/correioAPI/get/api/v1/encomendas", (req, res) => {
+app.get("/correioAPI/api/v1/encomendas", (req, res) => {
   db.all("SELECT * FROM encomendas", (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -46,7 +46,7 @@ app.get("/correioAPI/get/api/v1/encomendas", (req, res) => {
     console.table(rows)
   });
 });
-app.get("/correioAPI/get/api/v1/admin", (req, res) => {
+app.get("/correioAPI/api/v1/admin", (req, res) => {
   db.all("SELECT * FROM admin", (err, rows) => {
     if (err) {
       res.status(500).json({ error: err.message });
@@ -56,7 +56,7 @@ app.get("/correioAPI/get/api/v1/admin", (req, res) => {
     console.table(rows)
   });
 });
-app.post("/correioAPI/auth/api/v1/admin", (req, res) => {
+app.post("/correioAPI/api/v1/admin", (req, res) => {
   const { nome, senha } = req.body;
   const stmt = db.prepare("INSERT INTO admin (nome,senha) VALUES (?, ?)");
   stmt.run(nome, senha, (err) => {
@@ -68,7 +68,7 @@ app.post("/correioAPI/auth/api/v1/admin", (req, res) => {
   });
 });
 // Rota para criar uma nova encomenda
-app.post("/correioAPI/auth/api/v1/encomendas/", (req, res) => {
+app.post("/correioAPI/api/v1/encomendas/", (req, res) => {
   const { id, nome_proprietario, contacto, endereco, documentos, status } =
     req.body;
 
@@ -122,7 +122,7 @@ function updateStatus() {
   }, oneWeekInMilliseconds);
 }
 updateStatus();
-app.put("/correioAPI/update/api/v1/encomendas/:id", (req, res) => {
+app.put("/correioAPI/api/v1/encomendas/:id", (req, res) => {
   const id = req.params.id;
   const { status } = req.body;
 
@@ -141,7 +141,7 @@ app.put("/correioAPI/update/api/v1/encomendas/:id", (req, res) => {
   });
 });
 // Rota para retornar todas as encomendas com o status "entregue"
-app.get("/correioAPI/search/api/v1/encomendas/entregues", (req, res) => {
+app.get("/correioAPI/api/v1/encomendas/entregues", (req, res) => {
   const status = "entregue";
 
   db.all("SELECT * FROM encomendas WHERE status = ?", status, (err, rows) => {
@@ -153,7 +153,7 @@ app.get("/correioAPI/search/api/v1/encomendas/entregues", (req, res) => {
     console.table(rows)
   });
 });
-app.get("/correioAPI/search/api/v1/encomendas/vindo", (req, res) => {
+app.get("/correioAPI/api/v1/get/encomendas/vindo", (req, res) => {
   const status = "vindo";
 
   db.all("SELECT * FROM encomendas WHERE status = ?", status, (err, rows) => {
@@ -167,7 +167,7 @@ app.get("/correioAPI/search/api/v1/encomendas/vindo", (req, res) => {
 });
 
 app.get(
-  "/correioAPI/search/api/v1/encomendas/:nome_proprietario",
+  "/correioAPI/api/v1/encomendas/:nome_proprietario",
   (req, res) => {
     const nome_proprietario = req.params.nome_proprietario;
 
