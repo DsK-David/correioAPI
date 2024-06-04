@@ -10,7 +10,8 @@
     "sqlite3": "^5.1.7"
   },
   "scripts": {
-    "api": "nodemon server.js",
+    "dev": "nodemon server.js",
+    "api":"node server.js",
     "doc": "nodemon public/docs/main.js server.js"
   },
   "description": "Uma API simples para gerenciamento de encomendas de um correio.",
