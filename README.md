@@ -53,7 +53,7 @@ Se você quiser contribuir com o projeto, siga as etapas abaixo:
 ### Listar todas as encomendas
 
 ```
-GET /get/api/v1/encomendas
+GET /correioAPI/api/v1/encomendas
 ```
 
 Esta rota retorna todas as encomendas cadastradas no sistema.
@@ -61,7 +61,7 @@ Esta rota retorna todas as encomendas cadastradas no sistema.
 ### Criar uma nova encomenda
 
 ```
-POST /auth/api/v1/encomendas
+POST /correioAPI/api/v1/encomendas
 ```
 
 Esta rota é usada para criar uma nova encomenda. Os seguintes campos são obrigatórios no corpo da requisição:
@@ -76,7 +76,7 @@ Esta rota é usada para criar uma nova encomenda. Os seguintes campos são obrig
 ### Atualizar o status de uma encomenda
 
 ```
-PUT /update/api/v1/encomendas/:id
+PUT /correioAPI/api/v1/encomendas/:id
 ```
 
 Esta rota é usada para atualizar o status de uma encomenda com base no ID fornecido na URL. O novo status deve ser passado no corpo da requisição.
@@ -84,7 +84,7 @@ Esta rota é usada para atualizar o status de uma encomenda com base no ID forne
 ### Listar todas as encomendas com o status "entregue"
 
 ```
-GET /search/api/v1/encomendas/entregues
+GET /correioAPI/api/v1/encomendas/entregues
 ```
 
 Esta rota retorna todas as encomendas que têm o status "entregue".
@@ -92,7 +92,7 @@ Esta rota retorna todas as encomendas que têm o status "entregue".
 ### Listar todas as encomendas com o status "vindo"
 
 ```
-GET /search/api/v1/encomendas/vindo
+GET /correioAPI/api/v1/encomendas/vindo
 ```
 
 Esta rota retorna todas as encomendas que têm o status "vindo".
@@ -100,14 +100,14 @@ Esta rota retorna todas as encomendas que têm o status "vindo".
 ### Pesquisar encomendas por nome do proprietário
 
 ```
-GET /search/api/v1/encomendas/:nome_proprietario
+GET /correioAPI/api/v1/encomendas/:nome_proprietario
 ```
 
 Esta rota retorna todas as encomendas cujo nome do proprietário corresponde ao fornecido na URL.
 
 ### Buscar Encomenda por ID
 ```
-GET /search/api/v1/encomendas/:id
+GET /correioAPI/api/v1/encomendas/:id
 ```
 
 Esta rota retorna os detalhes de uma encomenda específica com base no ID fornecido na URL.
